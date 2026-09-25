@@ -1,0 +1,676 @@
+/* 
+File Name: style.css
+Purpose: Main stylesheet featuring solid dark surfaces, minimalist developer aesthetics, volumetric luminescence, and responsive accordions.
+Owner: Foxwell Collective Interactive (Foxwell Games)
+Copyright: All rights reserved. Codes, IPs, contents, and studio materials are strictly protected under international copyright and intellectual property laws.
+*/
+
+/* =========================================
+   CSS VARIABLES & GLOBAL SETTINGS
+   ========================================= */
+:root {
+    --bg-base: #000000;
+    --surface-dark: #0d1117;
+    --surface-darker: #161b22;
+    --accent-color: #007aff;
+    --text-main: #e6edf3;
+    --text-muted: #8b949e;
+    --border-color: #30363d;
+    --glow-opacity: 0;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+    background: var(--bg-base);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* =========================================
+   VOLUMETRIC LUMINESCENCE & TYPOGRAPHY
+   ========================================= */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3 {
+    text-shadow: 0 0 calc(15px * var(--glow-opacity)) var(--accent-color);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+}
+
+button {
+    box-shadow: 0 0 calc(20px * var(--glow-opacity)) var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+img:not(.footer-logo) {
+    filter: drop-shadow(0 0 calc(12px * var(--glow-opacity)) var(--accent-color));
+    transition: filter 0.3s ease;
+}
+
+.toggle-switch input:checked + .slider {
+    box-shadow: 0 0 calc(15px * var(--glow-opacity)) var(--accent-color);
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    box-shadow: 0 0 calc(12px * var(--glow-opacity)) var(--accent-color);
+}
+
+/* =========================================
+   SCREENS & LAYOUT
+   ========================================= */
+.screen {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* Setup & Terms Layout overrides */
+#setup-screen.active,
+#terms-screen.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.setup-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 2.5rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.terms-container {
+    max-width: 800px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    border-radius: 12px;
+}
+
+.terms-content {
+    margin: 1.5rem 0;
+    text-align: left;
+}
+
+.legal-clause {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--surface-darker);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-color);
+    border-radius: 4px;
+}
+
+.terms-date {
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+/* =========================================
+   SOLID DARK PANELS (Replacing Glassmorphism)
+   ========================================= */
+.surface-dark {
+    background: var(--surface-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.surface-darker {
+    background: var(--surface-darker);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+/* =========================================
+   HEADER & CMD TERMINAL
+   ========================================= */
+.top-bar-fixed {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--bg-base);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cmd-terminal {
+    display: flex;
+    align-items: center;
+    background: var(--surface-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.cmd-prefix {
+    color: var(--accent-color);
+    font-family: monospace;
+    font-weight: bold;
+    margin-right: 0.8rem;
+    white-space: nowrap;
+}
+
+.cmd-input-container {
+    position: relative;
+    flex-grow: 1;
+}
+
+#cmd-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-family: monospace;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+/* CMD Dropdown Framework */
+.cmd-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: -10px;
+    width: calc(100% + 20px);
+    background: var(--surface-darker);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    z-index: 101;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.9);
+}
+
+.cmd-dropdown.hidden {
+    display: none;
+}
+
+.cmd-suggestion {
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-family: monospace;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cmd-suggestion:last-child {
+    border-bottom: none;
+}
+
+.cmd-suggestion:hover, 
+.cmd-suggestion.active {
+    background: var(--border-color);
+    color: var(--accent-color);
+    padding-left: 1.5rem;
+}
+
+/* =========================================
+   ACCORDIONS
+   ========================================= */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.accordion-item {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.accordion-header {
+    padding: 1.2rem 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    transition: background 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.accordion-header:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.accordion-header[aria-expanded="true"] {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.content-padding {
+    padding: 1.5rem;
+}
+
+/* Nested Accordions */
+.nested-accordion {
+    margin-top: 1rem;
+}
+
+.nested-header {
+    padding: 1rem 1.2rem;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================
+   LISTS & ALIGNMENTS
+   ========================================= */
+ul, .custom-list {
+    padding-left: 1.5rem;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
+}
+
+ul li, .custom-list li {
+    margin-bottom: 0.5rem;
+}
+
+/* =========================================
+   UI ELEMENTS (Buttons, Inputs, Toggles)
+   ========================================= */
+.primary-btn {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+.primary-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.input-group {
+    margin-bottom: 1.2rem;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group textarea,
+.custom-select-wrapper select {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--surface-darker);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-main);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.custom-select-wrapper select:focus {
+    border-color: var(--accent-color);
+}
+
+.input-group.hidden {
+    display: none;
+}
+
+/* Checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    margin: 1rem 0;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    height: 20px;
+    width: 20px;
+    background-color: var(--surface-darker);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--surface-darker);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--text-main);
+    border-radius: 50%;
+    transition: .4s;
+}
+
+.toggle-switch input:checked + .slider {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* =========================================
+   COLOR PICKER FIX
+   ========================================= */
+.color-palette {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.color-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.color-swatch:hover, .color-swatch.selected {
+    transform: scale(1.2);
+    border-color: #ffffff;
+}
+
+.custom-color-wrapper {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.custom-color-wrapper input[type="color"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 200%;
+    height: 200%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    position: absolute;
+    top: -50%;
+    left: -50%;
+}
+
+.custom-color-wrapper input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.custom-color-wrapper input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+/* =========================================
+   GALLERY & LIGHTBOX
+   ========================================= */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 1rem;
+}
+
+.gallery-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: zoom-in;
+    border: 1px solid var(--border-color);
+}
+
+.single-showcase {
+    max-width: 400px;
+    display: block;
+}
+
+.lightbox-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox-overlay[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-container {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    text-align: center;
+}
+
+.lightbox-container img {
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+}
+
+.lightbox-caption {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+
+.close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+/* =========================================
+   SPECIAL CLASSES & UTILS
+   ========================================= */
+.mt-10 { margin-top: 1rem; }
+.mt-15 { margin-top: 1.5rem; }
+.mt-20 { margin-top: 2rem; }
+
+.status {
+    font-weight: bold;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.status.active { background: rgba(50, 215, 75, 0.15); color: #32d74b; border: 1px solid rgba(50, 215, 75, 0.3); }
+.status.pending { background: rgba(255, 159, 10, 0.15); color: #ff9f0a; border: 1px solid rgba(255, 159, 10, 0.3); }
+
+.info-box, .notice, .warning {
+    padding: 1rem;
+    border-radius: 6px;
+    background: var(--surface-darker);
+    border: 1px solid var(--border-color);
+    margin: 1rem 0;
+}
+
+.border-warning {
+    border-left: 4px solid #ff9f0a;
+}
+
+/* Pokspokee Special Tab */
+.special-tab {
+    border-color: rgba(255, 45, 85, 0.5);
+}
+
+.special-header h2 {
+    color: #ff2d55;
+    text-shadow: 0 0 10px rgba(255, 45, 85, 0.6);
+}
+
+.love-letter {
+    text-align: center;
+    font-style: italic;
+}
+
+.heart-icon-container {
+    margin-bottom: 1rem;
+    color: #ff2d55;
+    filter: drop-shadow(0 0 10px #ff2d55);
+}
+
+.signature {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+.site-footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-base);
+}
+
+.footer-logo {
+    max-width: 150px;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.footer-legal {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-muted);
+}
+
+/* 
+Terms of Use: The codes provided herein may be modified strictly for personal use. They cannot be shared, distributed, or presented illegally as if they were the property of someone else, in accordance with the accepted terms of Foxwell Collective Interactive.
+*/
