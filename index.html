@@ -1,0 +1,493 @@
+<!-- 
+File Name: index.html
+Purpose: Main semantic structure, minimalist dark interface, galleries, and interactive accordion systems.
+Owner: Foxwell Collective Interactive (Foxwell Games)
+Copyright: All rights reserved. Codes, IPs, contents, and studio materials are strictly protected under international copyright and intellectual property laws.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOXWELL SITE - Foxwell Collective Interactive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- LIGHTBOX IMAGE VIEWER (Hidden by default) -->
+    <div id="image-lightbox" class="lightbox-overlay" aria-hidden="true">
+        <div class="lightbox-container">
+            <button id="lightbox-close" class="close-btn" aria-label="Close image viewer">
+                <span class="close-icon"></span>
+            </button>
+            <img id="lightbox-img" src="" alt="Enlarged Visualized Image">
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <!-- SETUP SCREEN -->
+    <div id="setup-screen" class="screen active">
+        <div class="setup-container surface-dark">
+            <h1>Welcome to Foxwell Games</h1>
+            <p>Customize your high-end experience before entering.</p>
+            
+            <div class="setup-options">
+                <div class="option-group column-group">
+                    <label>Select Predefined Theme</label>
+                    <div class="color-palette">
+                        <div class="color-swatch selected" data-color="#007aff" title="Ocean Blue" style="background-color: #007aff;"></div>
+                        <div class="color-swatch" data-color="#ff2d55" title="Neon Pink" style="background-color: #ff2d55;"></div>
+                        <div class="color-swatch" data-color="#32d74b" title="Matrix Green" style="background-color: #32d74b;"></div>
+                        <div class="color-swatch" data-color="#ff9f0a" title="Sunset Orange" style="background-color: #ff9f0a;"></div>
+                        <div class="color-swatch" data-color="#bf5af2" title="Deep Purple" style="background-color: #bf5af2;"></div>
+                        <div class="color-swatch" data-color="#ff3b30" title="Crimson Red" style="background-color: #ff3b30;"></div>
+                    </div>
+                </div>
+
+                <div class="option-group">
+                    <label for="user-color">Or pick a Custom Color</label>
+                    <div class="custom-color-wrapper">
+                        <input type="color" id="user-color" value="#007aff" title="Custom Color Picker">
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <label for="user-glow">Enable Luminescence (Glow Effects)</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="user-glow">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <button id="btn-setup-confirm" class="primary-btn">Confirm Preferences</button>
+        </div>
+    </div>
+
+    <!-- TERMS OF SERVICE SCREEN -->
+    <div id="terms-screen" class="screen">
+        <div class="terms-container surface-dark">
+            <h1>Legal Rights & Agreements</h1>
+            <p class="terms-date">Effective as of September 24, 2026</p>
+            
+            <div class="terms-content custom-scrollbar">
+                <p>Welcome to Foxwell Collective Interactive. Before proceeding, you must acknowledge the following legal terms, enforced by international legal frameworks.</p>
+                
+                <div class="legal-clause">
+                    <h4>I. Berne Convention for the Protection of Literary and Artistic Works</h4>
+                    <p>In accordance with the Berne Convention (1886, as amended), all original literary, artistic, and source-code assets created by Foxwell Collective Interactive are granted automatic copyright protection upon their creation, without the requirement for formal registration. Any unauthorized reproduction is a direct violation of international law.</p>
+                </div>
+
+                <div class="legal-clause">
+                    <h4>II. WIPO Copyright Treaty (WCT)</h4>
+                    <p>Under the World Intellectual Property Organization Copyright Treaty of 1996, computer programs (such as our proprietary systems like Foxwell Systems) and compilation of data or other material (our IP lore and character designs) are protected as literary works. Circumvention of technological measures used to protect these works is strictly prohibited.</p>
+                </div>
+
+                <div class="legal-clause">
+                    <h4>III. Digital Millennium Copyright Act (DMCA)</h4>
+                    <p>For users subject to United States jurisdiction, all materials on this site are protected under Title 17 of the United States Code. Foxwell Collective Interactive reserves the absolute right to issue DMCA Takedown Notices to ISPs or hosting services if our assets, character designs (including Fizzy Foxwell and Clarity Glasswell), or systems are found copied, reverse-engineered, or distributed.</p>
+                </div>
+
+                <div class="legal-clause">
+                    <h4>IV. TRIPS Agreement</h4>
+                    <p>Consistent with the Agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS), our studio materials retain robust enforcement procedures against infringement, both domestically and across borders.</p>
+                </div>
+
+                <ul>
+                    <li>All codes, IPs, contents, and studio materials are heavily protected.</li>
+                    <li>Accepting these terms is not a requirement for a violation to constitute a violation. The protection is inherent.</li>
+                    <li>New terms may be added or existing terms modified in the future without prior individual notice.</li>
+                </ul>
+            </div>
+            
+            <div class="terms-acceptance">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="chk-accept-terms">
+                    <span class="checkmark"></span>
+                    <span class="checkbox-label">I have read, understood, and agree to the Terms</span>
+                </label>
+            </div>
+            
+            <button id="btn-enter-site" class="primary-btn disabled">Enter Site</button>
+        </div>
+    </div>
+
+    <!-- MAIN SITE SCREEN -->
+    <div id="main-site" class="screen">
+        
+        <!-- HEADER WITH CMD -->
+        <header id="main-header" class="top-bar-fixed solid-header">
+            <div class="header-content">
+                <h1 class="header-title">FOXWELL SITE</h1>
+                <div class="cmd-terminal">
+                    <span class="cmd-prefix" id="cmd-prefix-display">CMD></span>
+                    <div class="cmd-input-container">
+                        <input type="text" id="cmd-input" placeholder="Type keyword to navigate (e.g. Encounter, Blogs, Pokspokee)..." autocomplete="off" spellcheck="false">
+                        <div id="cmd-suggestions" class="cmd-dropdown hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="content-wrapper" id="main-content-scroll">
+            <section class="accordion main-accordion">
+                
+                <!-- HOME -->
+                <div class="accordion-item surface-dark" data-keyword="home index start">
+                    <div class="accordion-header" aria-expanded="false">
+                        <h2>Home</h2>
+                        <span class="icon-expand"></span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="content-padding">
+                            <h3>Welcome to Foxwell Games</h3>
+                            <p>Foxwell Collective Interactive, publicly known as Foxwell Games, is an independent game development studio dedicated to crafting deeply immersive, psychologically challenging, and narratively complex experiences.</p>
+                            <p>The studio's name originates directly from the middle name of our very first consolidated character, Fizzy Foxwell, standing as a permanent tribute to our roots.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECTS (Featuring Nested Tabs) -->
+                <div class="accordion-item surface-dark" data-keyword="projects games titles">
+                    <div class="accordion-header" aria-expanded="false">
+                        <h2>Projects</h2>
+                        <span class="icon-expand"></span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="content-padding">
+                            
+                            <!-- NESTED ACCORDION: Institute of Everlight (Keyword: Encounter) -->
+                            <div class="accordion nested-accordion">
+                                <div class="accordion-item nested-item surface-darker" data-keyword="encounter institute everlight relics">
+                                    <div class="accordion-header nested-header" aria-expanded="false">
+                                        <h3>Institute Of Everlight: Relics of the Golden Age</h3>
+                                        <span class="icon-expand"></span>
+                                    </div>
+                                    <div class="accordion-content nested-content">
+                                        <div class="content-padding">
+                                            <p class="status active">Status: In Development</p>
+                                            <p class="origin-date">Officially born as an institute setting on October 14, 2025.</p>
+                                            
+                                            <div class="info-box technical-sheet">
+                                                <h4>Technical Sheet</h4>
+                                                <ul>
+                                                    <li><strong>Engine:</strong> Unity Engine URP</li>
+                                                    <li><strong>Target Audience:</strong> Teens (14+)</li>
+                                                    <li><strong>Genres:</strong> Analog Horror, 2000s Aesthetic, Mascot Horror, Physical Puzzles</li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <h4>Premise (Spoiler-Free)</h4>
+                                            <p>A proposal is received from Paragon Asset Recovery to collect valuable items and lost reports inside the abandoned Institute in exchange for high compensation. The contractor must navigate the decaying infrastructure, utilizing analog tools, and fulfill high-risk objectives left behind from a forgotten era before the facility reclaims what is left.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NESTED ACCORDION: Foxwell Launcher -->
+                            <div class="accordion nested-accordion mt-15">
+                                <div class="accordion-item nested-item surface-darker" data-keyword="launcher fl app">
+                                    <div class="accordion-header nested-header" aria-expanded="false">
+                                        <h3>Foxwell Launcher (FL)</h3>
+                                        <span class="icon-expand"></span>
+                                    </div>
+                                    <div class="accordion-content nested-content">
+                                        <div class="content-padding">
+                                            <p class="status pending">Status: Planned</p>
+                                            <p>The official studio launcher designed to seamlessly handle user progress, cross-platform scoring, and unlockable DLCs through daily objectives. It will feature robust cloud data synchronization bridging the gap between Steam and Epic Games ecosystems. FL will be natively integrated and fully utilized for Institute Of Everlight.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NESTED ACCORDION: Foxwell Systems -->
+                            <div class="accordion nested-accordion mt-15">
+                                <div class="accordion-item nested-item surface-darker" data-keyword="systems fs scripts framework">
+                                    <div class="accordion-header nested-header" aria-expanded="false">
+                                        <h3>Foxwell Systems (FS)</h3>
+                                        <span class="icon-expand"></span>
+                                    </div>
+                                    <div class="accordion-content nested-content">
+                                        <div class="content-padding">
+                                            <p class="status active">Status: In Development</p>
+                                            <p>An expansive proprietary collection and organized framework of scripts and systems designed to severely accelerate project development. It includes highly advanced visual systems capable of performing specific logical operations without requiring direct code programming from the artists. FS will be the architectural backbone utilized in Institute Of Everlight.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOGS & GALLERIES -->
+                <div class="accordion-item surface-dark" data-keyword="blogs logs images gallery teaser">
+                    <div class="accordion-header" aria-expanded="false">
+                        <h2>Blogs & Development Logs</h2>
+                        <span class="icon-expand"></span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="content-padding">
+                            
+                            <!-- NESTED ACCORDION: Institute Of Everlight Blogs -->
+                            <div class="accordion nested-accordion">
+                                <div class="accordion-item nested-item surface-darker" data-keyword="institute everlight blog records">
+                                    <div class="accordion-header nested-header" aria-expanded="false">
+                                        <h3>Institute Of Everlight</h3>
+                                        <span class="icon-expand"></span>
+                                    </div>
+                                    <div class="accordion-content nested-content">
+                                        <div class="content-padding">
+                                            
+                                            <div class="info-box nomenclature-guide">
+                                                <h4>Systematic Nomenclature Guide</h4>
+                                                <p>Images within our secure database and blogs now follow descriptive identifiers (e.g., FFP, CGP, TWT) instead of obsolete numbered lists to guarantee efficient content tracking across the studio framework.</p>
+                                            </div>
+
+                                            <div class="blog-section surface-darker mt-15" data-keyword="fizzy foxwell">
+                                                <h3>Fizzy Foxwell Archival Data</h3>
+                                                <p>Fizzy Foxwell was the very first mascot conceptualized during the Golden Age, heavily referencing traditional circus aesthetics. His design features distinct, high-contrast color divisions and he is mechanically equipped with acoustic sound bells for spatial tracking.</p>
+                                                <div class="gallery">
+                                                    <img src="FF_FullBody_Concept.png" alt="Fizzy Foxwell Full Body Concept" loading="lazy" class="gallery-img">
+                                                    <img src="FFP_IceCream_EN.png" alt="Fizzy Foxwell Ice Cream Poster - English" loading="lazy" class="gallery-img">
+                                                    <img src="FFP_IceCream_PT.png" alt="Fizzy Foxwell Ice Cream Poster - Portuguese" loading="lazy" class="gallery-img">
+                                                </div>
+                                            </div>
+
+                                            <div class="blog-section surface-darker mt-15" data-keyword="clarity glasswell">
+                                                <h3>Clarity Glasswell Observation</h3>
+                                                <p>Clarity Glasswell represents the studio's pursuit of absolute aesthetic perfection, elegance, and unsettling charisma within a synthetic entity.</p>
+                                                <div class="gallery">
+                                                    <img src="CGP_BeautifulLook_EN.png" alt="Clarity Glasswell Beautiful Look - English" loading="lazy" class="gallery-img">
+                                                    <img src="CGP_BeautifulLook_PT.png" alt="Clarity Glasswell Beautiful Look - Portuguese" loading="lazy" class="gallery-img">
+                                                </div>
+                                            </div>
+
+                                            <div class="blog-section surface-darker mt-15" data-keyword="teaser environment walkie talkie">
+                                                <h3>Walkie-Talkie Environmental Teaser</h3>
+                                                <div class="gallery">
+                                                    <img src="TWT_Blender_Viewport.png" alt="Walkie-Talkie Teaser - Blender Viewport" loading="lazy" class="gallery-img">
+                                                    <img src="TWT_Blender_Timeline.png" alt="Walkie-Talkie Teaser - Video Sequence Editor" loading="lazy" class="gallery-img">
+                                                </div>
+                                                <div class="licenses info-box mt-20">
+                                                    <h4>3D Model Third-Party Licenses (Sketchfab Registry)</h4>
+                                                    <p>The following assets are utilized within early prototypes and teaser renders:</p>
+                                                    <ul>
+                                                        <li><strong>"Metal Drawer"</strong> by Frid.blend is licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/).</li>
+                                                        <li><strong>"Cables"</strong> by crisanim3d is licensed under CC-BY-4.0.</li>
+                                                        <li><strong>"VHS player"</strong> (https://skfb.ly/pDtYu) by GokouFG is licensed under CC-BY-4.0.</li>
+                                                        <li><strong>"Retro 2000's TV"</strong> (https://skfb.ly/pzCVF) by wasabicats is licensed under CC-BY-4.0.</li>
+                                                        <li><strong>"Bloody and Clean Wooden Floor Tiles"</strong> (https://skfb.ly/otDMr) by Intee Assets is licensed under CC-BY-4.0.</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="blog-section surface-darker mt-15" data-keyword="seasonal halloween sketch art">
+                                                <h3>Seasonal Artworks & Sketches</h3>
+                                                <p>Exclusive seasonal concepts produced by the art division.</p>
+                                                <div class="gallery">
+                                                    <img src="Halloween_Art_Sketch.png" alt="Halloween Artwork Sketch - Pumpkins and House" loading="lazy" class="gallery-img single-showcase">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CURIOSITIES & DATES -->
+                <div class="accordion-item surface-dark" data-keyword="curiosities dates history">
+                    <div class="accordion-header" aria-expanded="false">
+                        <h2>Curiosities & Historical Dates</h2>
+                        <span class="icon-expand"></span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="content-padding">
+                            <p class="warning border-warning">Warning: The information cataloged within these records is still in active development. Subject to structural refinements, historical corrections, or chronological additions without prior notice.</p>
+                            
+                            <div class="accordion nested-accordion mt-15">
+                                <div class="accordion-item nested-item surface-darker" data-keyword="team studio">
+                                    <div class="accordion-header nested-header" aria-expanded="false">
+                                        <h3>About The Studio & Team</h3>
+                                        <span class="icon-expand"></span>
+                                    </div>
+                                    <div class="accordion-content nested-content">
+                                        <div class="content-padding">
+                                            <p>Foxwell Games officially established its social media presence, domains, and global platforms on <strong>December 10, 2025</strong>.</p>
+                                            <ul class="custom-list mt-10">
+                                                <li><strong>QuietPollen:</strong> Lead Developer. Responsible for the project architecture and coding since its absolute conception.</li>
+                                                <li><strong>Emanuelle:</strong> Lead Artist. Responsible for visual aesthetics and 2D/3D arts, present since the genesis of the project.</li>
+                                                <li><strong>NexxyChaos:</strong> Voice Actor. A crucial vocal talent who integrated into the studio in early 2026.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion nested-accordion mt-15">
+                                <div class="accordion-item nested-item surface-darker" data-keyword="projects evolution">
+                                    <div class="accordion-header nested-header" aria-expanded="false">
+                                        <h3>About Projects Evolution</h3>
+                                        <span class="icon-expand"></span>
+                                    </div>
+                                    <div class="accordion-content nested-content">
+                                        <div class="content-padding">
+                                            <h4>Institute Of Everlight</h4>
+                                            <p><strong>Development Curiosity:</strong> The game's original conceptual setting was a twisted circus environment. On <strong>October 14, 2025</strong>, the entire scenario shifted to a corporate/scientific institute, giving birth to the current trajectory of the project.</p>
+                                            <p><strong>Lore Curiosity:</strong> The foundational base of the current narrative lore was successfully consolidated on <strong>November 18, 2025</strong>, though it continuously undergoes micro-refinements.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion nested-accordion mt-15">
+                                <div class="accordion-item nested-item surface-darker" data-keyword="characters origins">
+                                    <div class="accordion-header nested-header" aria-expanded="false">
+                                        <h3>Character Origins</h3>
+                                        <span class="icon-expand"></span>
+                                    </div>
+                                    <div class="accordion-content nested-content">
+                                        <div class="content-padding">
+                                            <h4>Fizzy Foxwell</h4>
+                                            <p>Fizzy existed as a raw concept for a circus stuffed animal since early 2025. Originally, he was drafted as a circus bear named simply "Tommy". He later received his definitive anatomical fox design. The final iteration of a circus fox was locked in on <strong>September 23, 2025</strong>. The origin of Fizzy as a circus entity is intrinsically tied to the fact that the project's original discarded setting was a circus.</p>
+                                            
+                                            <h4 class="mt-15">Clarity Glasswell</h4>
+                                            <p>She was originally formulated as a seasonal New Year character. Clarity was engineered in late December, specifically on <strong>December 28, 2025</strong>. Although she was released on the planned date and exact time, intense artistic doubts arose regarding her initial design metrics. After a considerable period of re-evaluation, completely new designs were authored and are now officially documented in the system blogs.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS -->
+                <div class="accordion-item surface-dark" data-keyword="settings config colors theme">
+                    <div class="accordion-header" aria-expanded="false">
+                        <h2>System Settings</h2>
+                        <span class="icon-expand"></span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="content-padding">
+                            <div class="setup-options">
+                                
+                                <div class="option-group column-group">
+                                    <label>Active Theme Preset</label>
+                                    <div class="color-palette">
+                                        <div class="color-swatch selected" data-color="#007aff" title="Ocean Blue" style="background-color: #007aff;"></div>
+                                        <div class="color-swatch" data-color="#ff2d55" title="Neon Pink" style="background-color: #ff2d55;"></div>
+                                        <div class="color-swatch" data-color="#32d74b" title="Matrix Green" style="background-color: #32d74b;"></div>
+                                        <div class="color-swatch" data-color="#ff9f0a" title="Sunset Orange" style="background-color: #ff9f0a;"></div>
+                                        <div class="color-swatch" data-color="#bf5af2" title="Deep Purple" style="background-color: #bf5af2;"></div>
+                                        <div class="color-swatch" data-color="#ff3b30" title="Crimson Red" style="background-color: #ff3b30;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="option-group">
+                                    <label for="settings-color">Override UI Accent Color</label>
+                                    <div class="custom-color-wrapper">
+                                        <input type="color" id="settings-color" title="System Accent Color">
+                                    </div>
+                                </div>
+
+                                <div class="option-group">
+                                    <label for="settings-glow">Volumetric Luminescence</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="settings-glow">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CONTACT US -->
+                <div class="accordion-item surface-dark" data-keyword="contact email support">
+                    <div class="accordion-header" aria-expanded="false">
+                        <h2>Contact Communications</h2>
+                        <span class="icon-expand"></span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="content-padding">
+                            <div class="contact-form">
+                                <div class="input-group">
+                                    <label for="contact-name">Sender Name (Optional)</label>
+                                    <input type="text" id="contact-name" placeholder="Enter your name">
+                                </div>
+                                <div class="input-group">
+                                    <label for="contact-email">Contact Email</label>
+                                    <input type="email" id="contact-email" placeholder="your.email@example.com">
+                                </div>
+                                <div class="input-group">
+                                    <label for="contact-subject">Routing Subject</label>
+                                    <div class="custom-select-wrapper">
+                                        <select id="contact-subject">
+                                            <option value="Copyright Requests">Copyright Infringement & Legal</option>
+                                            <option value="Support">Technical Support</option>
+                                            <option value="Questions">General Questions</option>
+                                            <option value="Suggestions">Project Suggestions</option>
+                                            <option value="Opinions">Feedback & Opinions</option>
+                                            <option value="Other">Other Routing</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-group hidden" id="group-other-subject">
+                                    <label for="contact-other-subject">Please specify custom subject</label>
+                                    <input type="text" id="contact-other-subject" placeholder="Type here...">
+                                </div>
+                                <div class="input-group">
+                                    <label for="contact-body">Encrypted Message</label>
+                                    <textarea id="contact-body" rows="6" placeholder="Describe your request..."></textarea>
+                                </div>
+                                <button id="btn-send-email" class="primary-btn submit-btn">Transmit Email</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SPECIAL POKSPOKEE TAB -->
+                <div class="accordion-item surface-dark special-tab" data-keyword="pokspokee love letter developer">
+                    <div class="accordion-header special-header" aria-expanded="false">
+                        <h2>For Pokspokee</h2>
+                        <span class="icon-expand"></span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="content-padding love-letter">
+                            <div class="heart-icon-container">
+                                <svg class="glowing-heart" viewBox="0 0 24 24" width="40" height="40">
+                                    <path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                                </svg>
+                            </div>
+                            <p>My dearest Pokspokee,</p>
+                            <p>In a world of endless code and dark themes, you are the brightest luminescent glow that fills my life. Every line I write, every project I dream of, feels warmer and more meaningful because I have you by my side.</p>
+                            <p>Thank you for being my safe haven, my inspiration, and the absolute love of my life. This journey in game development is incredible, but my greatest and most precious achievement will always be having your heart.</p>
+                            <p class="signature">With all my love,<br><strong>Your Developer.</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+
+        <!-- GLOBAL FOOTER -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <img src="Studio_Logo.png" alt="Foxwell Games Logo" loading="lazy" class="footer-logo">
+                <p>&copy; 2026 Foxwell Collective Interactive. All rights reserved.</p>
+                <p class="footer-legal">Codes, IPs, contents, and studio materials are strictly protected under international copyright and intellectual property laws.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- 
+Terms of Use: The codes provided herein may be modified strictly for personal use. They cannot be shared, distributed, or presented illegally as if they were the property of someone else, in accordance with the accepted terms of Foxwell Collective Interactive.
+-->
