@@ -1,0 +1,12 @@
+Historical Clarification regarding commit refactor(js)
+
+This document clarifies a minor description inaccuracy in the previous refactor(js) commit log entry.
+
+1. What Was Removed:
+Only the iOS 26 glassmorphism visual aesthetic (translucent backgrounds, backdrop-blur filters, and glass-like panel styles) was removed, transitioning the entire interface to solid dark surfaces inspired by GitHub developer aesthetics.
+
+2. What Remains Active and Preserved:
+- Luminescence toggles (user-glow and settings-glow checkboxes) in both Setup and System Settings screens.
+- Volumetric luminescence logic in script.js (applyGlow function and event listeners).
+- Dynamic CSS variables (--glow-opacity) and corresponding glow effects across typography, buttons, and gallery images.
+- Full alignment with the official README.md feature documentation regarding dynamic customization.
