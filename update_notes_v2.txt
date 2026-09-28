@@ -1,0 +1,17 @@
+Upcoming Website Update Notes
+
+Visual & Animation Enhancements:
+- Expanded volumetric luminescence: The glow effect will have a wider and smoother spread across the entire dark interface.
+- Improved interaction animations: Buttons will now smoothly expand upon mouse hover.
+- Animated checkboxes: Adding fluid transition states for checkbox selections.
+
+Content Expansions:
+- Blogs & Development Logs: Adding more drafted artworks and concepts to the seasonal Halloween sketch section.
+- Special Tab: Expanding the dedicated love letter to Pokspokee with more content.
+
+System & UI Logic Improvements:
+- CMD Terminal: Enhancing the command parsing and suggestion logic for a smoother user experience.
+- Intelligent Accordion System: Implementing a smart toggle behavior for nested tabs. Opening a nested accordion will now automatically close any other currently open nested tab within the same parent block. Main accordion tabs will remain independent and unaffected by this rule.
+
+Contact & Routing:
+- Email integration: Replacing the temporary testing email address with the official production contact. All encrypted messages from the contact form will now correctly route to foxwellcollective.contact@gmail.com.
