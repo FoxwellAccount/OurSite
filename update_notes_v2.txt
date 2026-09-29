@@ -8,10 +8,11 @@ Visual & Animation Enhancements:
 Content Expansions:
 - Blogs & Development Logs: Adding more drafted artworks and concepts to the seasonal Halloween sketch section.
 - Special Tab: Expanding the dedicated love letter to Pokspokee with more content.
+- FAQ Section: A new FAQ section will be added (likely as an info-box or nested accordion within the Projects tab) to officially clarify that "Institute of Everlight: Relics of the Golden Age" has no set release date (TBA). This will address and correct outdated rumors regarding a 2026/2027 release window.
 
 System & UI Logic Improvements:
 - CMD Terminal: Enhancing the command parsing and suggestion logic for a smoother user experience.
-- Intelligent Accordion System: Implementing a smart toggle behavior for nested tabs. Opening a nested accordion will now automatically close any other currently open nested tab within the same parent block. Main accordion tabs will remain independent and unaffected by this rule.
+- Intelligent Accordion System Refinement: The expandable accordion system is already implemented, but we will be refining its behavior. Currently, some tabs fail to expand fully on the first attempt, which we suspect is caused by conflicting code when multiple tabs are open simultaneously. To resolve this, we will introduce a smart toggle logic for nested tabs: opening a nested accordion will automatically close any other open nested tab within the same parent block. Main accordion tabs will remain independent.
 
 Contact & Routing:
 - Email integration: Replacing the temporary testing email address with the official production contact. All encrypted messages from the contact form will now correctly route to foxwellcollective.contact@gmail.com.
