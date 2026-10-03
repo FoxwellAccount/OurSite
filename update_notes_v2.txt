@@ -9,7 +9,11 @@ Content Expansions:
 - Blogs & Development Logs: Adding more drafted artworks and concepts to the seasonal Halloween sketch section.
 - Special Tab: Expanding the dedicated love letter to Pokspokee with more content.
 - FAQ Section: A new FAQ section will be added (likely as an info-box or nested accordion within the Projects tab) to officially clarify that "Institute of Everlight: Relics of the Golden Age" has no set release date (TBA). This will address and correct outdated rumors regarding a 2026/2027 release window.
-- Historical Dates Restructuring: We will separate and reorganize the important studio dates currently hidden within descriptions. All cited historical dates will be made highly visible and clear to ensure the studio's legacy is easily accessible.
+- Historical Dates Restructuring: We will separate and reorganize the important studio dates currently hidden within descriptions. All cited historical dates will be made highly visible and clear to ensure the studio's legacy is easily accessible. The following dates will be explicitly highlighted:
+  * March 15, 2026 - Initial project work and story conceptualization began.
+  * August 2, 2026 - Official master story documentation created.
+  * August 22, 2026 - True, stable development of the current build officially began following codebase refactoring.
+  * September 23, 2026 - Official repository creation timestamp.
 
 System & UI Logic Improvements:
 - CMD Terminal: Enhancing the command parsing and suggestion logic for a smoother user experience.
