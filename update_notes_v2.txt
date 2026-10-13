@@ -9,15 +9,21 @@ Content Expansions:
 - Blogs & Development Logs: Adding more drafted artworks and concepts to the seasonal Halloween sketch section.
 - Special Tab: Expanding the dedicated love letter to Pokspokee with more content.
 - FAQ Section: A new FAQ section will be added (likely as an info-box or nested accordion within the Projects tab) to officially clarify that "Institute of Everlight: Relics of the Golden Age" has no set release date (TBA). This will address and correct outdated rumors regarding a 2026/2027 release window.
-- Historical Dates Restructuring: We will separate and reorganize the important studio dates currently hidden within descriptions. All cited historical dates will be made highly visible and clear to ensure the studio's legacy is easily accessible. The following dates will be explicitly highlighted:
+- Historical Dates & Studio Milestones Restructuring: We will separate and reorganize key studio history and project evolution milestones. Instead of remaining in small font within deeply nested tabs with subtle highlighting, these dates will be restructured to be significantly more visible and distinct across the interface. The following dates will be explicitly highlighted in chronological order:
+  * September 23, 2025 - The final iteration of Fizzy Foxwell as a circus fox was locked in.
+  * October 14, 2025 - On this date, Institute Of Everlight's entire scenario shifted from a twisted circus environment to a corporate/scientific institute, giving birth to the current trajectory of the project.
+  * November 18, 2025 - The foundational base of the current narrative lore was successfully consolidated, though it continuously undergoes micro-refinements.
+  * December 10, 2025 - Foxwell Games officially established its social media presence, domains, and global platforms.
+  * December 28, 2025 - Clarity Glasswell was engineered in late December as a seasonal New Year character. Although released on the planned date and exact time, intense artistic doubts arose regarding her initial design metrics, leading to new designs officially documented in system blogs.
+  * Early 2026 - NexxyChaos integrated into the studio as a crucial vocal talent, joining QuietPollen (Lead Developer since absolute conception) and Emanuelle (Lead Artist present since the genesis of the project).
   * March 15, 2026 - Initial project work and story conceptualization began.
   * August 2, 2026 - Official master story documentation created.
-  * October 7, 2026 - True, stable development of the game officially restarted after losing previous progress due to a PC format without prior backup (moving the active build baseline from August 22 to October 7).
   * September 23, 2026 - Official repository creation timestamp.
+  * October 7, 2026 - True, stable development of the actual game officially restarted, moving from August 22 to October 7 due to losing project progress after formatting the PC without a prior backup.
 
 System & UI Logic Improvements:
 - CMD Terminal: Enhancing the command parsing and suggestion logic for a smoother user experience.
-- Intelligent Accordion System Refinement: The expandable accordion system is already implemented, but we will be refining its behavior. Currently, some tabs fail to expand fully on the first attempt, which we suspect is caused by conflicting code when multiple tabs are open simultaneously. To resolve this, we will introduce a smart toggle logic for nested tabs: opening a nested accordion will automatically close any other open nested tab within the same parent block. Main accordion tabs will remain independent.
+- Intelligent Accordion System Refinement: The expandable accordion system is already implemented, but we will be refining its behavior. Currently, main accordion tabs open, but after opening a main tab and then opening a nested tab inside it (especially if the nested tab is close to the lower edge of the main container), the main tab gets cut off and fails to adapt its size dynamically to the newly opened nested content. The only workaround currently is closing the main tab and reopening it, as if the main tab retains a fixed default height value and only recalculates layout height upon toggle. To resolve this, we will introduce a smart toggle and height calculation logic for nested tabs: opening a nested accordion will automatically close any other open nested tab within the same parent block and re-render the parent container's dynamic bounds. Main accordion tabs will remain independent.
 
 Contact & Routing:
 - Email integration: Replacing the temporary testing email address with the official production contact. All encrypted messages from the contact form will now correctly route to foxwellcollective.contact@gmail.com.
