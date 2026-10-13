@@ -12,7 +12,7 @@ Content Expansions:
 - Historical Dates Restructuring: We will separate and reorganize the important studio dates currently hidden within descriptions. All cited historical dates will be made highly visible and clear to ensure the studio's legacy is easily accessible. The following dates will be explicitly highlighted:
   * March 15, 2026 - Initial project work and story conceptualization began.
   * August 2, 2026 - Official master story documentation created.
-  * August 22, 2026 - True, stable development of the current build officially began following codebase refactoring.
+  * October 7, 2026 - True, stable development of the game officially restarted after losing previous progress due to a PC format without prior backup (moving the active build baseline from August 22 to October 7).
   * September 23, 2026 - Official repository creation timestamp.
 
 System & UI Logic Improvements:
