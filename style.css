@@ -63,7 +63,7 @@ h1, h2, h3, h4 {
 }
 
 h1, h2, h3 {
-    text-shadow: 0 0 calc(15px * var(--glow-opacity)) var(--accent-color);
+    text-shadow: 0 0 calc(25px * var(--glow-opacity)) var(--accent-color);
 }
 
 p {
@@ -72,21 +72,26 @@ p {
 }
 
 button {
-    box-shadow: 0 0 calc(20px * var(--glow-opacity)) var(--accent-color);
+    box-shadow: 0 0 calc(30px * var(--glow-opacity)) var(--accent-color);
     transition: all 0.3s ease;
 }
 
+button:hover, .primary-btn:hover {
+    transform: scale(1.03);
+}
+
 img:not(.footer-logo) {
-    filter: drop-shadow(0 0 calc(12px * var(--glow-opacity)) var(--accent-color));
+    filter: drop-shadow(0 0 calc(18px * var(--glow-opacity)) var(--accent-color));
     transition: filter 0.3s ease;
 }
 
 .toggle-switch input:checked + .slider {
-    box-shadow: 0 0 calc(15px * var(--glow-opacity)) var(--accent-color);
+    box-shadow: 0 0 calc(25px * var(--glow-opacity)) var(--accent-color);
 }
 
 .checkbox-container input:checked ~ .checkmark {
-    box-shadow: 0 0 calc(12px * var(--glow-opacity)) var(--accent-color);
+    box-shadow: 0 0 calc(18px * var(--glow-opacity)) var(--accent-color);
+    transform: scale(1.1);
 }
 
 /* =========================================
@@ -407,7 +412,7 @@ ul li, .custom-list li {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 .checkbox-container input:checked ~ .checkmark {
