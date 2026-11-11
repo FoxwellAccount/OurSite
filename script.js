@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. Accordion & Nested Tabs Logic ---
+    // --- 3. Accordion & Nested Tabs Logic (Smart Toggle & Height Calculation) ---
     function updateParentHeights(contentElement) {
         let parentContent = contentElement.parentElement.closest('.accordion-content');
         if (parentContent) {
@@ -142,6 +142,18 @@ document.addEventListener('DOMContentLoaded', () => {
                         sibHeader.nextElementSibling.style.maxHeight = null;
                     }
                 });
+            } else {
+                // Intelligent nested accordion refinement: automatically close other open nested tabs within the same parent block
+                const parentContentBlock = this.closest('.content-padding') || this.closest('.accordion-content');
+                if (parentContentBlock) {
+                    const siblingNestedHeaders = parentContentBlock.querySelectorAll('.nested-header');
+                    siblingNestedHeaders.forEach(sibHeader => {
+                        if (sibHeader !== this && sibHeader.getAttribute('aria-expanded') === 'true') {
+                            sibHeader.setAttribute('aria-expanded', 'false');
+                            sibHeader.nextElementSibling.style.maxHeight = null;
+                        }
+                    });
+                }
             }
             
             if (isExpanded) {
@@ -185,40 +197,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 4. CMD Terminal Logic ---
+    // --- 4. CMD Terminal Logic (Enhanced Parsing & Suggestions) ---
     if (cmdInput) {
         cmdInput.addEventListener('input', (e) => {
             const val = e.target.value.toLowerCase().trim();
             cmdSuggestions.innerHTML = '';
             
+            const availableKeywords = ['home', 'projects', 'blogs', 'curiosities', 'settings', 'contact', 'pokspokee', 'encounter', 'everlight'];
+            
             if (val.length > 0) {
                 cmdSuggestions.classList.remove('hidden');
                 
-                const suggestionDiv = document.createElement('div');
-                suggestionDiv.classList.add('cmd-suggestion');
-                suggestionDiv.textContent = 'Encounter';
+                const matchedKeywords = availableKeywords.filter(k => k.includes(val));
                 
-                suggestionDiv.addEventListener('click', () => {
-                    cmdPrefixDisplay.textContent = 'CMD> Encounter>';
-                    cmdInput.value = '';
-                    cmdSuggestions.classList.add('hidden');
-                    openTabByKeyword('encounter');
-                });
-                
-                cmdSuggestions.appendChild(suggestionDiv);
-                
-                if ("blogs".includes(val) || "pokspokee".includes(val)) {
-                    const extraSuggestion = document.createElement('div');
-                    extraSuggestion.classList.add('cmd-suggestion');
-                    const word = "blogs".includes(val) ? "Blogs" : "Pokspokee";
-                    extraSuggestion.textContent = word;
-                    extraSuggestion.addEventListener('click', () => {
-                        cmdPrefixDisplay.textContent = `CMD> ${word}>`;
-                        cmdInput.value = '';
-                        cmdSuggestions.classList.add('hidden');
-                        openTabByKeyword(word.toLowerCase());
+                if (matchedKeywords.length > 0) {
+                    matchedKeywords.forEach(keyword => {
+                        const suggestionDiv = document.createElement('div');
+                        suggestionDiv.classList.add('cmd-suggestion');
+                        const capitalizedWord = keyword.charAt(0).toUpperCase() + keyword.slice(1);
+                        suggestionDiv.textContent = capitalizedWord;
+                        
+                        suggestionDiv.addEventListener('click', () => {
+                            cmdPrefixDisplay.textContent = `CMD> ${capitalizedWord}>`;
+                            cmdInput.value = '';
+                            cmdSuggestions.classList.add('hidden');
+                            openTabByKeyword(keyword);
+                        });
+                        
+                        cmdSuggestions.appendChild(suggestionDiv);
                     });
-                    cmdSuggestions.appendChild(extraSuggestion);
+                } else {
+                    const noResultDiv = document.createElement('div');
+                    noResultDiv.classList.add('cmd-suggestion');
+                    noResultDiv.textContent = 'Command not found';
+                    cmdSuggestions.appendChild(noResultDiv);
                 }
                 
             } else {
@@ -296,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             messageBody += body.replace(/\n/g, '%0D%0A');
             
-            const targetEmail = "contact@foxwellgames.com";
+            const targetEmail = "foxwellcollective.contact@gmail.com";
             const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(finalSubject)}&body=${messageBody}`;
             
             window.location.href = mailtoLink;
