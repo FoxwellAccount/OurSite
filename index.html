@@ -24,8 +24,26 @@ Copyright: All rights reserved. Codes, IPs, contents, and studio materials are s
         </div>
     </div>
 
+    <!-- DEVICE SELECTION SCREEN -->
+    <div id="device-screen" class="screen active">
+        <div class="setup-container surface-dark">
+            <h1>Select Your Device</h1>
+            <p>Choose your device type to optimize the interface layout.</p>
+            
+            <div class="setup-options">
+                <div class="option-group column-group">
+                    <div class="device-palette color-palette">
+                        <button type="button" class="device-btn primary-btn" data-device="mobile">Mobile</button>
+                        <button type="button" class="device-btn primary-btn" data-device="tablet">Tablet</button>
+                        <button type="button" class="device-btn primary-btn" data-device="pc">PC</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- SETUP SCREEN -->
-    <div id="setup-screen" class="screen active">
+    <div id="setup-screen" class="screen">
         <div class="setup-container surface-dark">
             <h1>Welcome to Foxwell Games</h1>
             <p>Customize your high-end experience before entering.</p>
@@ -102,7 +120,11 @@ Copyright: All rights reserved. Codes, IPs, contents, and studio materials are s
             <div class="terms-acceptance">
                 <label class="checkbox-container">
                     <input type="checkbox" id="chk-accept-terms">
-                    <span class="checkmark"></span>
+                    <span class="checkmark">
+                        <svg class="check-icon" viewBox="0 0 24 24" width="14" height="14">
+                            <path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    </span>
                     <span class="checkbox-label">I have read, understood, and agree to the Terms</span>
                 </label>
             </div>
