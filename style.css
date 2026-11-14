@@ -73,11 +73,11 @@ p {
 
 button {
     box-shadow: 0 0 calc(30px * var(--glow-opacity)) var(--accent-color);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button:hover, .primary-btn:hover {
-    transform: scale(1.03);
+    transform: scale(1.06);
 }
 
 img:not(.footer-logo) {
@@ -108,6 +108,7 @@ img:not(.footer-logo) {
 }
 
 /* Setup & Terms Layout overrides */
+#device-screen.active,
 #setup-screen.active,
 #terms-screen.active {
     display: flex;
@@ -420,6 +421,18 @@ ul li, .custom-list li {
     border-color: var(--accent-color);
 }
 
+.check-icon {
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    color: #ffffff;
+}
+
+.checkbox-container input:checked ~ .checkmark .check-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
 /* Toggle Switch */
 .toggle-switch {
     position: relative;
@@ -473,6 +486,18 @@ ul li, .custom-list li {
     gap: 10px;
     justify-content: center;
     margin-top: 0.5rem;
+}
+
+.device-palette {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.device-btn {
+    margin-top: 0 !important;
+    flex: 1;
 }
 
 .color-swatch {
