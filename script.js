@@ -55,11 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 0. Device Selection Logic ---
     if (deviceButtons.length > 0) {
         deviceButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const selectedDevice = btn.dataset.device;
-                document.body.setAttribute('data-device', selectedDevice);
-                if (deviceScreen) deviceScreen.classList.remove('active');
-                if (setupScreen) setupScreen.classList.add('active');
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const selectedDevice = btn.getAttribute('data-device') || btn.dataset.device;
+                if (selectedDevice) {
+                    document.body.setAttribute('data-device', selectedDevice);
+                }
+                if (deviceScreen) {
+                    deviceScreen.classList.remove('active');
+                }
+                if (setupScreen) {
+                    setupScreen.classList.add('active');
+                }
             });
         });
     }
