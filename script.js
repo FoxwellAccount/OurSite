@@ -9,9 +9,13 @@ Copyright: All rights reserved. Codes, IPs, contents, and studio materials are s
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Elements ---
     // Screens
+    const deviceScreen = document.getElementById('device-screen');
     const setupScreen = document.getElementById('setup-screen');
     const termsScreen = document.getElementById('terms-screen');
     const mainSite = document.getElementById('main-site');
+
+    // Device Selection
+    const deviceButtons = document.querySelectorAll('.device-btn');
 
     // Setup Options
     const colorSwatches = document.querySelectorAll('.color-swatch');
@@ -47,6 +51,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- State Variables ---
     let root = document.documentElement;
+
+    // --- 0. Device Selection Logic ---
+    if (deviceButtons.length > 0) {
+        deviceButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const selectedDevice = btn.dataset.device;
+                document.body.setAttribute('data-device', selectedDevice);
+                if (deviceScreen) deviceScreen.classList.remove('active');
+                if (setupScreen) setupScreen.classList.add('active');
+            });
+        });
+    }
 
     // --- 1. Setup Screen Logic ---
     function applyColor(color) {
